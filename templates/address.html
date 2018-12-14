@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>地址信息</title>
+</head>
+<body>
+<select id="pro">
+    <option value="">请选择省</option>
+</select>
+<select id="city">
+    <option value="">请选择市</option>
+</select>
+<select id="dis">
+    <option value="">请选择县</option>
+</select>
+</body>
+<script src="/static/jquery-3.3.1.min.js"></script>
+<script>
+    address = function (a, b) {
+        $.get('/address/' + a, function (dic) {
+            $.each(dic, function (index, item) {
+                b.append('<option value="' + item.id + '">' + item.address + '</option>')
+            })
+        })
+    };
+    $(function () {
+        pro = $('#pro'); //省
+        city = $('#city'); //市
+        dis = $('#dis'); //县
+
+        // 查询省信息
+        address(0, pro);
+        //根据省的改变查询市的信息
+        pro.change(function () {
+            city.empty().append('<option value="">请选择市</option>');
+            dis.empty().append('<option value="">请选择县</option>');
+            address(this.value, city)
+        });
+        //根据市的改变查询县的信息
+        city.change(function () {
+            dis.empty().append('<option value="">请选择县</option>');
+            address(this.value, dis)
+        })
+    })
+</script>
+</html>
