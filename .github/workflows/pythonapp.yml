@@ -1,0 +1,35 @@
+name: Python application
+
+on: [push]
+
+jobs:
+  build01:
+    runs-on: [linux]
+    steps:
+    - uses: actions/checkout@master
+    - name: Set up Python 3.7
+      uses: actions/setup-python@master
+      with:
+        python-version: 3.7
+
+  build02:
+    name: my first job
+    runs-on: [linux]
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+      - name: Run a single-line script
+        run: echo "python"
+
+  build03:
+    name: my second job
+    runs-on: [linux]
+    steps:
+    - name: Run a multi-line script
+      env:
+        MY_VAR: Python 3.8
+        MY_NAME: IMOOC 
+      run: |
+        echo $MY_VAR
+        echo My name is $MY_NAME
+        
