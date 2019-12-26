@@ -4,7 +4,8 @@ on: [push]
 
 jobs:
   build01:
-    runs-on: [linux]
+    name: python environment
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
     - name: Set up Python 3.7
@@ -14,7 +15,7 @@ jobs:
 
   build02:
     name: my first job
-    runs-on: [linux]
+    runs-on: ubuntu-latest
     steps:
       - name: checkout
         uses: actions/checkout@master
@@ -23,7 +24,7 @@ jobs:
 
   build03:
     name: my second job
-    runs-on: [linux]
+    runs-on: ubuntu-latest
     steps:
     - name: Run a multi-line script
       env:
